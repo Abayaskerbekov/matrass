@@ -1,0 +1,72 @@
+from django.db import models
+
+# Create your models here.
+
+class Products(models.Model):
+    name = models.CharField("Название", max_length = 100)
+    vise = models.CharField("Типы", max_length = 200)
+    name2 = models.CharField("месяц", max_length = 100)
+    image = models.ImageField("изображение", upload_to="img_suppliers/")
+
+    verbose_name = "Товары"
+    verbose_name_pluaral = "Товар"
+
+
+    def __str__(self):
+        return self.name
+
+
+
+class Tovar(models.Model):
+    name = models.CharField("Название", max_length = 100)
+    vise = models.PositiveIntegerField("Размеры")
+    name2 = models.CharField("Типы", max_length = 100)
+    image = models.ImageField("Нравиться фото", upload_to="img_suppliers/")
+
+
+    verbose_name = "Товары"
+    verbose_name_plural = "Товары"
+
+
+    def __str__(self):
+        return self.name
+
+
+
+class Product_2(models.Model):
+    name = models.CharField("Название", max_length=200)
+    name2 = models.CharField("Одинатонные", max_length=100)
+    image = models.ImageField("Изображение", upload_to="img_suppliers/")
+    size = models.JSONField("Размер")
+    stock = models.PositiveIntegerField("Количество")
+    created_at = models.DateTimeField("Дата")
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def stock_label(self):
+        if self.stock <= 3:
+            return f"Осталось {self.stock} товара"
+
+
+    verbose_name = "Хиты продаж"
+    verbose_name_plural = "Хиты продаж"
+
+
+
+class Frame(models.Model):
+    bib = models.CharField("", max_lenght = 100)
+    text = models.TextField("")
+    name = models.CharField("", max_lenght = 100)
+    number = models.PositiveIntegerField("")
+    comment = models.CharField("", max_lenght = 200)
+    text1 = models.CharField("", max_lenght = 150)
+
+
+    def __str__(self):
+        return self.name
+
+
+    verbose_name = ""
+    verbose_name_plural = ""
